@@ -1,5 +1,5 @@
 package com.ivanna.ticket.model;
 
 public enum TicketStatus {
-OPEN,IN_PROGRESS, CLOSED
+OPEN,IN_PROGRESS,CLOSED
 }
