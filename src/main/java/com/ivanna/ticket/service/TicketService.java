@@ -1,4 +1,9 @@
 package com.ivanna.ticket.service;
 
-public class TicketService {
+import com.ivanna.ticket.repository.TicketRepository;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TicketService{
+
 }
