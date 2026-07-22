@@ -1,5 +1,6 @@
 package com.ivanna.ticket.service;
 
+import com.ivanna.ticket.exception.TicketNotFoundException;
 import com.ivanna.ticket.model.Ticket;
 import com.ivanna.ticket.model.TicketPriority;
 import com.ivanna.ticket.model.TicketStatus;
@@ -30,7 +31,7 @@ public class TicketService{
     }
 
     public Ticket getTicketById(Long id){
-        return ticketRepository.findById(id).orElseThrow();
+        return ticketRepository.findById(id).orElseThrow(()-> new TicketNotFoundException(id));
     }
 
     public Ticket updateTicketStatus(Long id, TicketStatus status){
