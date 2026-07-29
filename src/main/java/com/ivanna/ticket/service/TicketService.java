@@ -1,5 +1,6 @@
 package com.ivanna.ticket.service;
 
+import com.ivanna.ticket.dto.CreateTicketRequest;
 import com.ivanna.ticket.exception.TicketNotFoundException;
 import com.ivanna.ticket.model.Ticket;
 import com.ivanna.ticket.model.TicketPriority;
@@ -19,10 +20,16 @@ public class TicketService{
         this.ticketRepository = ticketRepository;
     }
 
-    public Ticket createTicket(Ticket ticket){
+    public Ticket createTicket(CreateTicketRequest request){
+        Ticket ticket = new Ticket();
+
+        ticket.setTitle(request.getTitle());
+        ticket.setDescription(request.getDescription());
+
         ticket.setStatus(TicketStatus.OPEN);
         ticket.setPriority(TicketPriority.MEDIUM);
         ticket.setCreatedAt(LocalDateTime.now());
+
         return ticketRepository.save(ticket);
     }
 

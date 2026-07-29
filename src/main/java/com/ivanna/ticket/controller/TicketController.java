@@ -1,9 +1,11 @@
 package com.ivanna.ticket.controller;
 
+import com.ivanna.ticket.dto.CreateTicketRequest;
 import com.ivanna.ticket.model.Ticket;
 import com.ivanna.ticket.model.TicketStatus;
 import com.ivanna.ticket.service.TicketService;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,8 +30,8 @@ public class TicketController {
     }
 
     @PostMapping
-    public Ticket createTicket(@RequestBody Ticket ticket){
-        return ticketService.createTicket(ticket);
+    public Ticket createTicket(@Valid @RequestBody CreateTicketRequest request){
+        return ticketService.createTicket(request);
     }
 
     @PatchMapping("/{id}")
