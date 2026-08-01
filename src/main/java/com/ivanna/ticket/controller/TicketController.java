@@ -1,6 +1,7 @@
 package com.ivanna.ticket.controller;
 
 import com.ivanna.ticket.dto.CreateTicketRequest;
+import com.ivanna.ticket.dto.TicketResponse;
 import com.ivanna.ticket.model.Ticket;
 import com.ivanna.ticket.model.TicketStatus;
 import com.ivanna.ticket.service.TicketService;
@@ -20,22 +21,22 @@ public class TicketController {
     }
 
     @GetMapping
-    public List<Ticket> getAllTickets(){
+    public List<TicketResponse> getAllTickets(){
         return ticketService.getAllTickets();
     }
 
     @GetMapping("/{id}")
-    public Ticket getTicket(@PathVariable Long id){
+    public TicketResponse getTicket(@PathVariable Long id){
         return ticketService.getTicketById(id);
     }
 
     @PostMapping
-    public Ticket createTicket(@Valid @RequestBody CreateTicketRequest request){
+    public TicketResponse createTicket(@Valid @RequestBody CreateTicketRequest request){
         return ticketService.createTicket(request);
     }
 
     @PatchMapping("/{id}")
-    public Ticket updateTicketStatus(@PathVariable Long id, @RequestBody TicketStatus status){
+    public TicketResponse updateTicketStatus(@PathVariable Long id, @RequestBody TicketStatus status){
         return ticketService.updateTicketStatus(id, status);
     }
 
