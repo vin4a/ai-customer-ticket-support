@@ -17,3 +17,6 @@ spring:
       hibernate:
         format_sql: true
 
+jwt:
+  secret: una-clave-secreta-larga-segura-y-temporal
+  expiration: 3600000
