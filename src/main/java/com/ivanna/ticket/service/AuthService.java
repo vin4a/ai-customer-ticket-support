@@ -1,5 +1,6 @@
 package com.ivanna.ticket.service;
 
+import com.ivanna.ticket.dto.AuthResponse;
 import com.ivanna.ticket.dto.LoginRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -9,17 +10,22 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
     private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
 
-    public AuthService(AuthenticationManager authenticationManager) {
+    public AuthService(AuthenticationManager authenticationManager, JwtService jwtService) {
         this.authenticationManager = authenticationManager;
+        this.jwtService = jwtService;
     }
 
-    public void login(LoginRequest request){
+    public AuthResponse login(LoginRequest request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
-                        request.getPassword()
-                )
+                        request.getPassword())
         );
+
+        String token = jwtService.generateToken(request.getEmail());
+
+        return new AuthResponse(token);
     }
 }

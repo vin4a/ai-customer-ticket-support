@@ -1,5 +1,6 @@
 package com.ivanna.ticket.controller;
 
+import com.ivanna.ticket.dto.AuthResponse;
 import com.ivanna.ticket.dto.CreateUserRequest;
 import com.ivanna.ticket.dto.LoginRequest;
 import com.ivanna.ticket.service.AuthService;
@@ -30,9 +31,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest request){
-        authService.login(request);
-        return ResponseEntity.ok("Authentication succesful");
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest request){
+        return ResponseEntity.ok(authService.login(request));
     }
 
 

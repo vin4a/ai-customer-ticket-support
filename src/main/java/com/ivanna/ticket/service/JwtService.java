@@ -30,7 +30,4 @@ public class JwtService {
                 .signWith(getSigningKey())
                 .compact();
     }
-
-
-
 }
